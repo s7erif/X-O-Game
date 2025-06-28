@@ -60,8 +60,9 @@ class Program
                 Console.WriteLine("\n🤝 It's a draw!");
                 break;
             }
-
+            
             currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            
         }
 
         Console.WriteLine("\nPress any key to play again...");
@@ -78,7 +79,10 @@ class Program
             Console.Write("║");
             for (int j = 0; j < 3; j++)
             {
-                Console.Write($" {board[i, j]} ║");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($" {board[i, j]} ");
+                Console.ResetColor();
+                Console.Write("║");
             }
             Console.WriteLine();
             if (i < 2)
@@ -89,9 +93,11 @@ class Program
 
     static bool CheckWinner()
     {
+        
         // Rows & Columns
         for (int i = 0; i < 3; i++)
         {
+
             if ((board[i, 0] == currentPlayer &&
                  board[i, 1] == currentPlayer &&
                  board[i, 2] == currentPlayer) ||
@@ -111,6 +117,7 @@ class Program
             return true;
 
         return false;
+        
     }
 
     static void ResetGame()
